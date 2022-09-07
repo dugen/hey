@@ -14,10 +14,10 @@ RUN adduser \
     "${USER}"
 
 RUN apt-get update && apt-get install -y ca-certificates
-RUN go get github.com/rakyll/hey
+RUN go get github.com/dugen/hey
 
 # Build
-WORKDIR /go/src/github.com/rakyll/hey
+WORKDIR /go/src/github.com/dugen/hey
 RUN go mod download
 RUN CGO_ENABLED=0 GOOS=linux go build -o /go/bin/hey hey.go
 
@@ -31,10 +31,10 @@ USER appuser:appuser
 
 ARG APPLICATION="hey"
 ARG DESCRIPTION="HTTP load generator, ApacheBench (ab) replacement, formerly known as rakyll/boom"
-ARG PACKAGE="rakyll/hey"
+ARG PACKAGE="dugen/hey"
 
 LABEL org.opencontainers.image.ref.name="${PACKAGE}" \
-    org.opencontainers.image.authors="Jaana Dogan <@rakyll>" \
+    org.opencontainers.image.authors="Jaana Dogan <@rakyll>, Kevin Langhans <@dugen>" \
     org.opencontainers.image.documentation="https://github.com/${PACKAGE}/README.md" \
     org.opencontainers.image.description="${DESCRIPTION}" \
     org.opencontainers.image.licenses="Apache 2.0" \

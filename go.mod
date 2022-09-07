@@ -1,8 +1,7 @@
 module github.com/dugen/hey
 
-require (
-	golang.org/x/net v0.0.0-20191009170851-d66e71096ffb
-	golang.org/x/text v0.3.2 // indirect
-)
+go 1.19
 
-go 1.18
+require golang.org/x/net v0.0.0-20220906165146-f3363e06e74c
+
+require golang.org/x/text v0.3.7 // indirect
