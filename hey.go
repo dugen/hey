@@ -35,7 +35,7 @@ import (
 const (
 	headerRegexp = `^([\w-]+):\s*(.+)`
 	authRegexp   = `^(.+):([^\s].+)`
-	heyUA        = "hey/0.0.1"
+	heyUA        = "hey/v0.1.5"
 )
 
 var (
@@ -215,7 +215,7 @@ func main() {
 
 	// set userAgent header if set
 	if *userAgent != "" {
-		ua = *userAgent + " " + heyUA
+		ua = *userAgent + " | " + heyUA
 		header.Set("User-Agent", ua)
 	}
 
@@ -272,7 +272,7 @@ func parseInputWithRegexp(input, regx string) ([]string, error) {
 	re := regexp.MustCompile(regx)
 	matches := re.FindStringSubmatch(input)
 	if len(matches) < 1 {
-		return nil, fmt.Errorf("could not parse the provided input; input = %v", input)
+		return nil, fmt.Errorf("could not parse the provided input; input = %v, on regex: %s", input, regx)
 	}
 	return matches, nil
 }
